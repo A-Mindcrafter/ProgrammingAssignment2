@@ -17,7 +17,7 @@ makeCacheMatrix <- function(X = matrix()) {
           # It will ask cacheSolve to compute the inverse / get the cached matrix;
           # and reassign back to I
           
-          inverse <- function() {
+          getinverse <- function() {
                     I <<- cacheSolve(X, I)
                     I
           }
@@ -31,14 +31,14 @@ makeCacheMatrix <- function(X = matrix()) {
           # getting from the cached data.
           
           set <- function(Y){
-                    if (identical(X, Y) != TRUE){
+                    if (!identical(X, Y)){
                               X <<- Y
                               I <<- NULL
                     }
           }
                     
           
-          list(set = set, get = get, inverse = inverse)
+          list(set = set, get = get, getinverse = getinverse)
 }
 
 ## The function, cacheSolve, will solve the inverse or 
